@@ -9,6 +9,7 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'slim-rails'
 gem 'html2slim'
+gem 'bootstrap'
 
 
 # Use Uglifier as compressor for JavaScript assets
