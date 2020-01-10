@@ -1,0 +1,13 @@
+= form_with model: word, local: true do |f|
+    .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control', id:'word_name'
+    .form-group
+        = f.label :translation
+        = f.text_field :translation, rows: 2, class: 'form-control', 
+                                        id: 'word-example'
+    .form-group
+        = f.label :example
+        = f.text_area :example, rows: 2, class: 'form-control', 
+                            id: 'word-example'
+    = f.submit nil, class: 'btn btn-primary'
