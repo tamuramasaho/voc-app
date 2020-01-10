@@ -1,0 +1,23 @@
+h1 全単語
+= link_to '新規登録', new_word_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+    thead.thead-default
+        tr
+            th= Word.human_attribute_name(:name)
+            th= Word.human_attribute_name(:translation)
+            th= Word.human_attribute_name(:created_at)
+            th
+    tbody
+        - @words.each do |word|
+            tr
+                td= link_to word.name, word
+                td= word.translation
+                td= word.created_at
+                td
+                    =link_to '編集', edit_word_path(word),
+                                    class: 'btn btn-primary mr-3'
+                    =link_to '削除', word, method: :delete,
+                        data: { confirm: "単語「#{word.name}」を削除します。よろしいですか？" },
+                        class: 'btn btn-danger'

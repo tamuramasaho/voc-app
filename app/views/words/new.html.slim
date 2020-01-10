@@ -1,0 +1,6 @@
+h1 単語の新規登録
+
+.nav.justify-content-end
+    = link_to '全単語', words_path, class: 'nav-link'
+
+= render partial: 'form', locals: {word: @word}
