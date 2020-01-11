@@ -28,9 +28,12 @@ class WordsController < ApplicationController
   end
 
   def create
-    word = Word.new(word_params)
-    word.save!
-    redirect_to words_url, notice: "単語「#{word.name}」を登録しました。"
+    @word = Word.new(word_params)
+    if @word.save
+      redirect_to words_url, notice: "単語「#{word.name}」を登録しました。"
+    else
+      render :new
+    end
   end
 
   private
