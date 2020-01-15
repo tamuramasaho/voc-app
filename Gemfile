@@ -10,7 +10,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'bootstrap'
-
+gem 'bcrypt', '~> 3.1.7'
+gem 'rspec-rails', '~> 3.7'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
