@@ -1,10 +1,10 @@
 class WordsController < ApplicationController
+  before_action :set_word, only: [:show, :edit, :update, :destroy]
   def index
-    @words = Word.all
+    @words = current_user.words.alphabetical
   end
 
   def show
-    @word = Word.find(params[:id])
   end
 
   def new
@@ -12,25 +12,22 @@ class WordsController < ApplicationController
   end
 
   def edit
-    @word = Word.find(params[:id])
   end
 
   def update
-    word = Word.find(params[:id])
-    word.update!(word_params)
-    redirect_to word_url, notice: "タスク「#{word.name}」を更新しました。"
+    @word.update!(word_params)
+    redirect_to word_url, notice: "タスク「#{@word.name}」を更新しました。"
   end
 
   def destroy
-    word = Word.find(params[:id])
-    word.destroy
-    redirect_to words_url, notice: "タスク「#{word.name}」を削除しました。"
+    @word.destroy
+    redirect_to words_url, notice: "タスク「#{@word.name}」を削除しました。"
   end
 
   def create
-    @word = Word.new(word_params)
+    @word = current_user.words.new(word_params)
     if @word.save
-      redirect_to words_url, notice: "単語「#{word.name}」を登録しました。"
+      redirect_to words_url, notice: "単語「#{@word.name}」を登録しました。"
     else
       render :new
     end
@@ -39,5 +36,9 @@ class WordsController < ApplicationController
   private
     def word_params
       params.require(:word).permit(:name, :example, :translation)
+    end
+
+    def set_word
+      @word = current_user.words.find(params[:id])
     end
 end
