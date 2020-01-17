@@ -3,4 +3,19 @@ h1 単語の新規登録
 .nav.justify-content-end
     = link_to '全単語', words_path, class: 'nav-link'
 
-= render partial: 'form', locals: {word: @word}
+- if @word.errors.present?
+    ul#error_explanation
+        - @word.errors.full_messages.each do |message|
+            li = message
+
+= form_with model: @word, local: true, url: confirm_new_word_path do |f|
+    .form-group
+        = f.label :name
+        = f.text_field :name, class: 'form-control', id: 'word_name'
+    .form-group
+        = f.label :translation
+        = f.text_field :translation, class: 'form-control', id: 'word_translation'
+    .form-group
+        = f.label :example
+        = f.text_field :example, class: 'form-control', id: 'word_example'
+    = f.submit '確認', class: 'btn btn-primary'

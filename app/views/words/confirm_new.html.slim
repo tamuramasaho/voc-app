@@ -1,0 +1,19 @@
+h1 登録内容の確認
+
+= form_with model: @word, local: true do |f|
+    table.table.table-hover
+        tbody
+            tr
+                th= Word.human_attribute_name(:name)
+                td= @word.name
+                = f.hidden_field :name
+            tr
+                th= Word.human_attribute_name(:translation)
+                td= simple_format(@word.translation)
+                = f.hidden_field :translation
+            tr
+                th= Word.human_attribute_name(:example)
+                td= simple_format(@word.example)
+                = f.hidden_field :example
+    = f.submit '戻る', name: 'back', class: 'btn btn-secondary mr-3'
+    = f.submit '登録', class: 'btn btn-primary'
