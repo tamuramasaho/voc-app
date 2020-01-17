@@ -1,6 +1,7 @@
 class Word < ApplicationRecord
    #  validates :name, presence: true
-    validates :name, length: { maximum: 30 }
+    validates :name, length: { maximum: 30 }, presence: true
+    validates :translation, presence: true
     validate :validate_name_not_including_comma
 
     belongs_to :user

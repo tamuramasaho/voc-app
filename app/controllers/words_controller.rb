@@ -27,10 +27,16 @@ class WordsController < ApplicationController
   def create
     @word = current_user.words.new(word_params)
     if @word.save
+      logger.debug "word: #{@word.attributes.inspect}"
       redirect_to words_url, notice: "単語「#{@word.name}」を登録しました。"
     else
       render :new
     end
+  end
+
+  def confirm_new
+    @word = current_user.words.new(word_params)
+    render :new unless @word.valid?
   end
 
   private
