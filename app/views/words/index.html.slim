@@ -8,9 +8,12 @@ h1 全単語
     .form-group
         = f.submit class: 'btn btn-outline-primary'
 
-= link_to '新規登録', new_word_path, class: 'btn btn-primary'
+= link_to '新規登録', new_word_path, class: 'btn btn-primary mb-3'
 
 .mb-3
+    = paginate @words
+    = page_entries_info @words
+
 table.table.table-hover
     thead.thead-default
         tr

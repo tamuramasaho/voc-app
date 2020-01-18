@@ -13,6 +13,8 @@ gem 'bootstrap'
 gem 'bcrypt', '~> 3.1.7'
 gem 'ransack'
 gem 'faker'
+gem 'kaminari'
+
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
