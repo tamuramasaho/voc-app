@@ -3,6 +3,17 @@ class WordsController < ApplicationController
   def index
     @q = current_user.words.ransack(params[:q])
     @words = @q.result(distinct: true).alphabetical
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @words.generate_csv, 
+          filename: "words-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+    end
+  end
+
+  def import
+    current_user.words.import(params[:file])
+    redirect_to words_url, notice: "単語を登録しました"
   end
 
   def show
