@@ -1,7 +1,8 @@
 class WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
   def index
-    @words = current_user.words.alphabetical
+    @q = current_user.words.ransack(params[:q])
+    @words = @q.result(distinct: true).alphabetical
   end
 
   def show
@@ -26,6 +27,12 @@ class WordsController < ApplicationController
 
   def create
     @word = current_user.words.new(word_params)
+
+    if params[:back].present?
+      render :new
+      return
+    end
+
     if @word.save
       logger.debug "word: #{@word.attributes.inspect}"
       redirect_to words_url, notice: "単語「#{@word.name}」を登録しました。"
