@@ -6,7 +6,5 @@ Rails.application.routes.draw do
     resources :users
   end
   root to: 'words#index'
-  resources :words do
-    post :confirm, action: :confirm_new, on: :new
-  end 
+  resources :words
 end

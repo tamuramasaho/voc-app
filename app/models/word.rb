@@ -1,12 +1,13 @@
 class Word < ApplicationRecord
-   #  validates :name, presence: true
-    validates :name, length: { maximum: 30 }, presence: true
-    validates :translation, presence: true
-    validate :validate_name_not_including_comma
+   has_one_attached :image
+   validates :name, presence: true
+   validates :name, length: { maximum: 30 }
+   validates :translation, presence: true
+   validate :validate_name_not_including_comma
 
-    belongs_to :user
+   belongs_to :user
 
-    scope :alphabetical, -> { order('name ASC') }
+   scope :alphabetical, -> { order('name ASC') }
 
     private
      def validate_name_not_including_comma

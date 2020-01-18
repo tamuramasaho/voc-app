@@ -18,6 +18,9 @@ table.table.table-hover
             td= simple_format(h(@word.example), {}, sinitize: false, 
                                     wrapper_tag: "div")
         tr
+            th= Word.human_attribute_name(:image)
+            td= image_tag @word.image if @word.image.attached?
+        tr
             th= Word.human_attribute_name(:created_at)
             td= @word.created_at
         tr
