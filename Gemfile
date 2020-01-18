@@ -12,6 +12,7 @@ gem 'html2slim'
 gem 'bootstrap'
 gem 'bcrypt', '~> 3.1.7'
 gem 'ransack'
+gem 'faker'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
