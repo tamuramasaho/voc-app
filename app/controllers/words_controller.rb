@@ -28,11 +28,6 @@ class WordsController < ApplicationController
   def create
     @word = current_user.words.new(word_params)
 
-    if params[:back].present?
-      render :new
-      return
-    end
-
     if @word.save
       logger.debug "word: #{@word.attributes.inspect}"
       redirect_to words_url, notice: "単語「#{@word.name}」を登録しました。"
@@ -41,14 +36,9 @@ class WordsController < ApplicationController
     end
   end
 
-  def confirm_new
-    @word = current_user.words.new(word_params)
-    render :new unless @word.valid?
-  end
-
   private
     def word_params
-      params.require(:word).permit(:name, :example, :translation)
+      params.require(:word).permit(:name, :example, :translation, :image)
     end
 
     def set_word

@@ -16,4 +16,7 @@
         = f.label :example
         = f.text_area :example, rows: 2, class: 'form-control', 
                             id: 'word-example'
+    .form-group
+        = f.label :image
+        = f.file_field :image, class: 'form-control'
     = f.submit nil, class: 'btn btn-primary'
