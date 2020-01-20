@@ -23,14 +23,14 @@ table.table.table-hover
             th
     tbody
         - @words.each do |word|
-            tr
+            tr id="word-#{word.id}"
                 td= link_to word.name, word
                 td= word.translation
                 td= word.created_at
                 td
                     =link_to '編集', edit_word_path(word),
                                     class: 'btn btn-primary mr-3'
-                    =link_to '削除', word, method: :delete,
+                    =link_to '削除', word, method: :delete, remote: true,
                         data: { confirm: "単語「#{word.name}」を削除します。よろしいですか？" },
                         class: 'btn btn-danger'
 = link_to 'エクスポート', words_path(format: :csv), class: 'btn btn-primary mb-3'
