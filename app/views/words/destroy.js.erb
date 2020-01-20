@@ -1,0 +1,5 @@
+document.querySelector("#word-<%= @word.id %>").style.display = 'none';
+
+var message = document.createElement('p');
+message.innerText = '単語「<%= @word.name %>」を削除しました。残りのタスクは<%= current_user.words.count %>件です';
+document.querySelector('table').insertAdjacentElement('beforebegin', message);

@@ -34,7 +34,6 @@ class WordsController < ApplicationController
 
   def destroy
     @word.destroy
-    redirect_to words_url, notice: "タスク「#{@word.name}」を削除しました。"
   end
 
   def create
