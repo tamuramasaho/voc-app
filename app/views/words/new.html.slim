@@ -3,9 +3,4 @@ h1 単語の新規登録
 .nav.justify-content-end
     = link_to '全単語', words_path, class: 'nav-link'
 
-- if @word.errors.present?
-    ul#error_explanation
-        - @word.errors.full_messages.each do |message|
-            li = message
-
 = render partial: 'form', locals: {word: @word}
