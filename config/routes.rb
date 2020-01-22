@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   root to: 'words#index'
   resources :words do
     post :import, on: :collection
+    put :remember_update, on: :member
   end
 end

@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_action :set_word, only: [:show, :edit, :update, :destroy,
+                     :remember_update]
   def index
     @q = current_user.words.ransack(params[:q])
     @words = @q.result(distinct: true).alphabetical.page(params[:page])
@@ -32,6 +33,10 @@ class WordsController < ApplicationController
     redirect_to word_url, notice: "タスク「#{@word.name}」を更新しました。"
   end
 
+  def remember_update
+    @word.update!(word_params)
+  end
+
   def destroy
     @word.destroy
   end
@@ -49,7 +54,7 @@ class WordsController < ApplicationController
 
   private
     def word_params
-      params.require(:word).permit(:name, :example, :translation, :image)
+      params.require(:word).permit(:name, :example, :translation, :image, :remember)
     end
 
     def set_word
