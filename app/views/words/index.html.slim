@@ -19,21 +19,29 @@ table.table.table-hover
         tr
             th= Word.human_attribute_name(:name)
             th= Word.human_attribute_name(:translation)
-            th
+            th= "覚えたか"
     tbody
         - @words.each do |word|
             tr id="word-#{word.id}"
                 td= link_to word.name, word
                 td= word.translation
-                td
-                    =link_to '編集', edit_word_path(word),
-                                    class: 'btn btn-primary mr-3'
-                    =link_to '削除', word, method: :delete, remote: true,
-                        data: { confirm: "単語「#{word.name}」を削除します。よろしいですか？" },
-                        class: 'btn btn-danger'
+                td id = "word-#{word.id}-check"
+                    -if word.remember
+                        = link_to Word.human_attribute_name(:remember),
+                            remember_update_word_path(word, word: {remember: false}),
+                            method: :put, remote: true,
+                            class: 'fa fa-check-square-o'
+                    -else
+                        = link_to Word.human_attribute_name(:remember),
+                            remember_update_word_path(word, word: {remember: true}),
+                            method: :put, remote: true,
+                            class: 'fa fa-square-o'
+                    
 .mb-3
     = paginate @words
 = link_to 'エクスポート', words_path(format: :csv), class: 'btn btn-primary mb-3'
 = form_tag import_words_path, multipart: true, class: 'mb-3' do
     = file_field_tag :file
     = submit_tag "インポート", class: 'btn btn-primary'
+
+= debug params

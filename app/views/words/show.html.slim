@@ -21,6 +21,8 @@ table.table.table-hover
 
 = link_to '編集', edit_word_path, class: 'btn btn-primary mr-3'
 
-=link_to '削除', @word, method: :delete,
+= link_to '削除', @word, method: :delete,
             data: { confirm: "単語「#{@word.name}」を削除します。よろしいですか？" },
             class: 'btn btn-danger'
+
+= debug params
