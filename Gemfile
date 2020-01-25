@@ -15,7 +15,8 @@ gem 'ransack'
 gem 'faker'
 gem 'kaminari'
 gem 'webpacker'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'jquery-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

@@ -9,7 +9,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      = link_to 'Voc-app', root_path, class: 'navbar-brand'
+      = link_to 'Voc-app', root_path, class: 'navbar-brand', id: 'logo'
 
       ul.navbar-nav.ml-auto
         - if current_user

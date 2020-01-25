@@ -11,12 +11,17 @@
     .form-group
         = f.label :translation
         = f.text_field :translation, rows: 2, class: 'form-control', 
-                                        id: 'word-example'
+                                        id: 'word_translation'
     .form-group
         = f.label :example
         = f.text_area :example, rows: 2, class: 'form-control', 
                             id: 'word-example'
     .form-group
-        = f.label :image
-        = f.file_field :image, class: 'form-control'
+        = f.label :image, style: "display: block;"
+        = text_field_tag 'filename',"", id: "filename", 
+            class: 'form-control col-sm-10'
+        = button_tag 'ファイル選択', class: 'btn btn-dark',
+                 type: 'button', onclick: "$('#file_input').click();"
+        = f.file_field :image, id: "file_input",
+                    style: "display: none;", onchange: "file_selected($(this));"
     = f.submit nil, class: 'btn btn-primary'
