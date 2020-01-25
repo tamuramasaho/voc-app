@@ -63,6 +63,12 @@ p {
     color: gray;
     text-decoration: none;
 }
+
 .table th, .table td {
+    vertical-align: middle;
+}
+
+#filename {
+    display: inline !important;
     vertical-align: middle;
 }

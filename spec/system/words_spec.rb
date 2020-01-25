@@ -6,7 +6,8 @@ describe '単語管理機能', type: :system do
                                             email: 'a@example.com') }
     let(:user_b) { FactoryBot.create(:user, name: 'ユーザーB',
                                             email: 'b@example.com') }
-    let!(:word_a) { FactoryBot.create(:word, name: 'first word', user: user_a) }
+    let!(:word_a) { FactoryBot.create(:word, name: 'first word',
+                                            translation: '訳', user: user_a) }
 
     before do
         # 作成者がユーザAである単語を作成しておく
@@ -56,12 +57,14 @@ describe '単語管理機能', type: :system do
 
         before do
             visit new_word_path
-            fill_in '単語', with: word_name
+            fill_in 'word_name', with: word_name
+            fill_in 'word_translation', with: word_translation
             click_button '登録する'
         end
 
         context '新規作成画面で名称を入力したとき' do
             let(:word_name) { '新規作成のテストを書く' }
+            let(:word_translation) { '訳を入れたはず' }
 
             it '正常に登録される' do
                 expect(page).to have_selector '.alert-success', 
@@ -71,6 +74,7 @@ describe '単語管理機能', type: :system do
 
         context '新規作成画面で名称を入力しなかったとき' do
             let(:word_name) { '' }
+            let(:word_translation) { '訳を入れたはず' }
 
             it 'エラーとなる' do
                 within '#error_explanation' do
