@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :login_required
 
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(email: session_params[:email])
@@ -21,7 +20,8 @@ class SessionsController < ApplicationController
   end
 
   private
-    def session_params
-      params.require(:session).permit(:email, :password)
-    end
+
+  def session_params
+    params.require(:session).permit(:email, :password)
+  end
 end
