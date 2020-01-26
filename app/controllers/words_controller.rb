@@ -15,8 +15,11 @@ class WordsController < ApplicationController
   end
 
   def import
-    current_user.words.import(params[:file])
-    redirect_to words_url, notice: '単語を登録しました'
+    if current_user.words.import(params[:file])
+      redirect_to words_url, notice: '単語を登録しました'
+    else
+      redirect_to words_url, notice: 'CSVファイルを選択してください'
+    end
   end
 
   def show; end
