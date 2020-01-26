@@ -29,8 +29,9 @@ class Word < ApplicationRecord
          word.attributes = row.to_hash.slice(*csv_attributes)
          word.save!
       end
+      return true
     else
-      return
+      return false
     end
   end
 
