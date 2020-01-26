@@ -22,7 +22,7 @@ class WordsController < ApplicationController
   def show; end
 
   def new
-    @word = Word.new
+    @word = current_user.words.new
   end
 
   def edit; end
@@ -38,6 +38,7 @@ class WordsController < ApplicationController
 
   def destroy
     @word.destroy
+    redirect_to words_url, notice: "単語「#{@word.name}」を削除しました。"
   end
 
   def create

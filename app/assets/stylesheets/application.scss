@@ -72,3 +72,9 @@ p {
     display: inline !important;
     vertical-align: middle;
 }
+
+*:focus, button:focus {
+    outline: 0;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
