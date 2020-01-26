@@ -1,32 +1,31 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:show, :edit, :update, :destroy,
-                     :remember_update]
+  before_action :set_word, only: %i[show edit update destroy
+                                    remember_update]
+
   def index
     @q = current_user.words.ransack(params[:q])
     @words = @q.result(distinct: true).alphabetical.page(params[:page])
-    
-
     respond_to do |format|
       format.html
-      format.csv { send_data @words.generate_csv, 
-          filename: "words-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"}
+      format.csv do
+        send_data @words.generate_csv,
+                  filename: "words-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
+      end
     end
   end
 
   def import
     current_user.words.import(params[:file])
-    redirect_to words_url, notice: "単語を登録しました"
+    redirect_to words_url, notice: '単語を登録しました'
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @word = Word.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @word.update!(word_params)
@@ -53,11 +52,18 @@ class WordsController < ApplicationController
   end
 
   private
-    def word_params
-      params.require(:word).permit(:name, :example, :translation, :image, :remember)
-    end
 
-    def set_word
-      @word = current_user.words.find(params[:id])
-    end
+  def word_params
+    params.require(:word).permit(
+      :name,
+      :example,
+      :translation,
+      :image,
+      :remember
+    )
+  end
+
+  def set_word
+    @word = current_user.words.find(params[:id])
+  end
 end
