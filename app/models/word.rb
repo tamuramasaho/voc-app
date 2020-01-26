@@ -23,10 +23,14 @@ class Word < ApplicationRecord
   end
 
   def self.import(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      word = new
-      word.attributes = row.to_hash.slice(*csv_attributes)
-      word.save!
+    if file
+      CSV.foreach(file.path, headers: true) do |row|
+         word = new
+         word.attributes = row.to_hash.slice(*csv_attributes)
+         word.save!
+      end
+    else
+      return
     end
   end
 
