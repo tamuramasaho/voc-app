@@ -1,24 +1,30 @@
-# README
+## 概要
+単語帳です。自分が英語学習時にあったらよかったなという機能を実装しました。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 単語関連
+- 一覧表示機能
+- 詳細表示機能
+- 削除機能
+- 編集機能
+- 単語検索機能
+- ページネーション機能(kaminari)
+- 覚えたかどうかのチェック機能
 
-Things you may want to cover:
+## ユーザー関連
+- 一覧表示機能
+- 詳細表示機能
+- 削除機能
+- 登録機能
+- 編集機能
+- 管理ユーザー追加機能
+- ログイン・アウト機能
 
-* Ruby version
+## その他
+- 静的解析ツール(RuboCop)
+- バージョン管理(GitHub)
+- テスト(RSpec)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## これから実装予定
+- AWSにデプロイ
+- Dockerにて環境構築
+- CIツールによるテスト、自動デプロイ
