@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-describe '単語管理機能', type: :system do
-  # ユーザーAとユーザーBを作成するが、letが初めて呼ばれるまで評価しない
+describe 'words management system', type: :system do
   let(:user_a) do
     FactoryBot.create(:user, name: 'ユーザーA',
                              email: 'a@example.com')
   end
   let(:user_b) do
     FactoryBot.create(:user, name: 'ユーザーB',
-                             email: 'b@example.com')
+                             email: 'b@example.com',
+                             admin: false)
   end
   let!(:word_a) do
     FactoryBot.create(:word, name: 'first word',
@@ -16,7 +16,6 @@ describe '単語管理機能', type: :system do
   end
 
   before do
-    # 作成者がユーザAである単語を作成しておく
     FactoryBot.create(:word, name: 'first word', user: user_a)
     visit login_path
     fill_in 'メールアドレス', with: login_user.email
@@ -24,40 +23,47 @@ describe '単語管理機能', type: :system do
     click_button 'ログインする'
   end
 
-  shared_examples_for 'ユーザーAが作成した単語が表示される' do
+  shared_examples_for 'showing words made by ユーザーA' do
     it { expect(page).to have_content 'first word' }
   end
 
-  describe '一覧表示機能' do
-    context 'ユーザAがログインしている時' do
+  describe 'words index test' do
+    context 'when ユーザーA is logged in' do
       let(:login_user) { user_a }
 
-      it_behaves_like 'ユーザーAが作成した単語が表示される'
+      it_behaves_like 'showing words made by ユーザーA'
+
+      it 'has users index link' do
+        expect(page).to have_content 'ユーザー一覧'
+      end
     end
 
-    context 'ユーザーBがログインしている時' do
+    context 'when ユーザーB is logged in' do
       let(:login_user) { user_b }
 
-      it 'ユーザーAが作成した単語が表示されない' do
-        # ユーザーAが作成した単語の名称が画面上に表示されていないことを確認
+      it 'does not have words made by ユーザーA' do
         expect(page).to have_no_content 'first word'
+      end
+
+      it 'does not have users index link' do
+        expect(page).not_to have_content 'ユーザー一覧'
       end
     end
   end
 
-  describe '詳細表示機能' do
-    context 'ユーザーAがログインしているとき' do
+  describe 'word show test' do
+    context 'when ユーザーA is logged in' do
       let(:login_user) { user_a }
 
       before do
         visit word_path(word_a)
       end
 
-      it_behaves_like 'ユーザーAが作成した単語が表示される'
+      it_behaves_like 'showing words made by ユーザーA'
     end
   end
 
-  describe '新規作成機能' do
+  describe 'word new test' do
     let(:login_user) { user_a }
 
     before do
@@ -67,21 +73,21 @@ describe '単語管理機能', type: :system do
       click_button '登録する'
     end
 
-    context '新規作成画面で名称を入力したとき' do
+    context 'input with word name and translation' do
       let(:word_name) { '新規作成のテストを書く' }
       let(:word_translation) { '訳を入れたはず' }
 
-      it '正常に登録される' do
+      it 'is saved correctly' do
         expect(page).to have_selector '.alert-success',
                                       text: '新規作成のテストを書く'
       end
     end
 
-    context '新規作成画面で名称を入力しなかったとき' do
+    context 'input without word name' do
       let(:word_name) { '' }
       let(:word_translation) { '訳を入れたはず' }
 
-      it 'エラーとなる' do
+      it 'has an error' do
         within '#error_explanation' do
           expect(page).to have_content '単語を入力してください'
         end
