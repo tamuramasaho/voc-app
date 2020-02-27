@@ -14,8 +14,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
-# gem 'puma', '~> 3.11'
-gem 'unicorn'
+gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'ransack'
 gem 'sass-rails', '~> 5.0'
@@ -30,6 +29,14 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 4.11'
   gem 'rspec-rails', '~> 3.7'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+end
+
+group :production, :staging do
+  gem 'unicorn'
 end
 
 group :development do
@@ -39,12 +46,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-passenger', '>= 0.1.1'
-  gem 'capistrano-rails'
-  gem 'capistrano-rvm'
-  gem 'capistrano-figaro-yml', '~> 1.0.2'
 end
 
 group :test do
@@ -53,4 +54,4 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data'

@@ -1,8 +1,3 @@
-role :app, %w{deploy_user@3.113.137.46}
-role :web, %w{deploy_user@3.113.137.46}
-role :db,  %w{deploy_user@3.113.137.46}
-set :ssh_options, {
-   keys: %w('/Users/user/Desktop/my-key.pem'),
-   forward_agent: false,
-   auth_methods: %w(publickey password)
-}
+server '18.180.8.25', user: 'masaho', roles: %w{app db web}
+
+set :ssh_options, keys: '~/.ssh/voc-app_key_rsa'
