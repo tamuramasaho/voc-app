@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "3.4.0"
+lock "3.12.0"
 
 set :application, "voc-app"
 set :repo_url, "git@github.com:tamuramasaho/voc-app.git"
@@ -17,7 +17,7 @@ namespace :deploy do
         invoke 'unicorn:restart'
     end
 
-    desk 'Create database'
+    desc 'Create database'
     task :db_create do
         on roles(:db) do |host|
             with rails_env: fetch(:rails_env) do
