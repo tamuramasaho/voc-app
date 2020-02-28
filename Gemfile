@@ -23,6 +23,7 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 gem 'figaro'
+gem 'mini_racer' 
 
 
 group :development, :test do
