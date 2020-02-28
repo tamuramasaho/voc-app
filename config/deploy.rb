@@ -4,12 +4,13 @@ lock "3.12.0"
 set :application, "voc-app"
 set :repo_url, "git@github.com:tamuramasaho/voc-app.git"
 set :branch, 'master'
-set :deploy_to, '/var/www/voc-app'
-set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
+set :deploy_to, '/var/www/rails/voc-app'
+set :linked_files, fetch(:linked_files, []).push('config/master.key')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 set :keep_releases, 5
 set :rbenv_ruby, '2.5.1'
 set :log_level, :debug
+
 
 namespace :deploy do
     desc 'Restart application'
@@ -46,3 +47,4 @@ namespace :deploy do
         end
     end
 end
+
