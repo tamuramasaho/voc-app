@@ -84,9 +84,10 @@ test:
 #
 production:
   adapter: mysql2
+  charset: utf8
   encoding: utf8
   pool: 5
-  database: voc_production
+  database: voc-app_production
   username: root
   password: 
   socket: /var/lib/mysql/mysql.sock
