@@ -83,10 +83,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adpter: mysql2
+  adapter: mysql2
   encoding: utf8
   pool: 5
-  database: voc-app_production
+  database: voc_production
   username: root
   password: 
   socket: /var/lib/mysql/mysql.sock
