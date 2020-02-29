@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "3.12.0"
+lock "3.4.0"
 
 set :application, "voc-app"
 set :repo_url, "git@github.com:tamuramasaho/voc-app.git"
@@ -40,7 +40,7 @@ namespace :deploy do
         end
     end
 
-    after :publishing, :restert
+    after :publishing, :restart
 
     after :restart, :clear_cache do
         on roles(:web), in: :groups, limit: 3, wait: 10 do
