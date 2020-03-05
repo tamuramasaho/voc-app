@@ -27,6 +27,9 @@ jobs:
       - checkout
       # Which version of bundler?
       - run:
+          name: Install bundler
+          command: gem install bundler -v 2.1.4
+      - run:
           name: Which bundler?
           command: bundle -v
       # bundle cache
