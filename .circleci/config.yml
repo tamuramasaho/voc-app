@@ -10,9 +10,8 @@ references:
       DB_PASSWORD: ''
   mysql: &mysql
     image: circleci/mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: voc-app_test
+
+      
 
 jobs:
   build:
@@ -31,7 +30,6 @@ jobs:
       - restore_cache:
           keys:
             - voc-app-{{ checksum "Gemfile.lock" }}
-            - voc-app-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
