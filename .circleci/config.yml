@@ -54,7 +54,7 @@ jobs:
             - voc-app-{{ checksum "Gemfile.lock" }}
       # テストで足した
       - run:
-          name: Which bundler?
+          name: Install bundler
           command: gem install bundler:2.1.4
       - run:
           name: Bundle Install
