@@ -71,7 +71,7 @@ jobs:
             echo Failed waiting for MySQL && exit 1
       - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          command: bundle exec rails db:create --trace
       # Run rspec in parallel
       - run:
           command: |
