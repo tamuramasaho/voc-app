@@ -5,7 +5,7 @@ default: &default
   username: root
   password: password
   host: db
-  
+
 development:
   <<: *default
   database: voc-app_development
@@ -13,6 +13,7 @@ development:
 test:
   <<: *default
   database: voc-app_test
+  password:
 
 production:
   <<: *default
