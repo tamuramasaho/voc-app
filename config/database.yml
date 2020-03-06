@@ -13,7 +13,8 @@ development:
 test:
   <<: *default
   database: voc-app_test
-
+  host:
+  
 production:
   <<: *default
   database: voc_production
