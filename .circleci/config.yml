@@ -22,7 +22,7 @@ jobs:
       - *default_docker_ruby_executor
     steps:
       - checkout
-      # Which version of bundler?
+      # Which version of bundler?t
       - run:
           name: Install bundler
           command: gem install bundler -v 2.1.4
