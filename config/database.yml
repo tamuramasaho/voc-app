@@ -13,8 +13,9 @@ development:
 test:
   <<: *default
   database: voc-app_test
-  host:
-  
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+
 production:
   <<: *default
   database: voc_production
