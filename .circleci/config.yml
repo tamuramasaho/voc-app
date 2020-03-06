@@ -55,7 +55,7 @@ jobs:
       # テストで足した
       - run:
           name: Which bundler?
-          command: bundle -v
+          command: gem install bundler:2.1.4
       - run:
           name: Bundle Install
           command: bundle check || bundle install
