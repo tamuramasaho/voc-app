@@ -12,7 +12,7 @@ references:
       PGPASSWORD: ""
       RAILS_ENV: test
   mysql: &mysql
-    image: circleci/mysql5.7
+    image: circleci/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: voc-app_test
