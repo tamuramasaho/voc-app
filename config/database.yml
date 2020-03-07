@@ -14,6 +14,7 @@ test:
   <<: *default
   database: voc-app_test
   password: 
+  socket: /tmp/mysql.sock
   
 
 production:
