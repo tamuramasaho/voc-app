@@ -23,9 +23,7 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'figaro'
 
-group :development, :production do
-  gem 'mini_racer' 
-end
+# gem 'mini_racer' 
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
