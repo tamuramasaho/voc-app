@@ -3,11 +3,11 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: password
 
 development:
   <<: *default
   database: voc-app_development
+  password: password
   host: db
   
 test:

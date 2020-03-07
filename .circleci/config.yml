@@ -8,7 +8,7 @@ references:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: vendor/bundle
       DB_HOST: 127.0.0.1
-      DB_USERNAME: voc-app_test
+      DB_USERNAME: root
       DB_PASSWORD: ""
       RAILS_ENV: test
   mysql: &mysql
