@@ -51,6 +51,9 @@ jobs:
             - voc-app-{{ checksum "Gemfile.lock" }}
             - voc-app-
       - run:
+          name: Install bundler
+          command: gem install bundler -v 2.1.4
+      - run:
           name: Bundle Install
           command: bundle check || bundle install
       - run:
