@@ -1,76 +1,82 @@
 version: 2
+
+references:
+  default_docker_ruby_executor: &default_docker_ruby_executor
+    image: circleci/ruby:2.6.3-stretch-node
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      DB_HOST: 127.0.0.1
+      DB_USERNAME: circleci-demo-ruby
+      DB_PASSWORD: ""
+      RAILS_ENV: test
+  mysql: &mysql
+    image: circleci/mysql:5.7
+    environment:
+      DB_USERNAME: root
+      DB_PASSWORD: ""
+
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/ruby:2.5.1-node-browsers
-        environment:
-          RAILS_ENV: test
-          DB_HOST: 127.0.0.1
-          DB_USERNAME: 'root'
-          DB_PASSWORD: ''
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/mysql:5.7
-
-    working_directory: ~/voc-app
-
+      - *default_docker_ruby_executor
     steps:
       - checkout
-
-      # Download and cache dependencies
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      # bundle cache
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+            - voc-app-{{ checksum "Gemfile.lock" }}
+            - voc-app-
       - run:
-          name: install bundler
-          command: |
-            gem install bundler -v 2.1.4
-
-      - run:
-          name: install dependencies
-          command: |
-            bundle install
-
+          name: Bundle Install
+          command: bundle check || bundle install
+      # Store bundle cache
       - save_cache:
+          key: voc-app-{{ checksum "Gemfile.lock" }}
           paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
+            - vendor/bundle
+  test:
+    parallelism: 3
+    docker:
+      - *default_docker_ruby_executor
+      - *mysql
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - voc-app-{{ checksum "Gemfile.lock" }}
+            - voc-app-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
       - run:
           name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-
-      # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-
-      # run tests!
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
-          name: run tests
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
+      - run:
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
-
-      # collect reports
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
 
-      # run rubocop
-      - run:
-          name: run rubocop
-          command: bundle exec rubocop
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build

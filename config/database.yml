@@ -4,11 +4,11 @@ default: &default
   pool: 5
   username: root
   password: password
-  host: db
 
 development:
   <<: *default
   database: voc-app_development
+  host: db
   
 test:
   <<: *default
