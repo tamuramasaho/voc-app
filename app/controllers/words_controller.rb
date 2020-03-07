@@ -25,7 +25,7 @@ class WordsController < ApplicationController
   def show; end
 
   def new
-    # @word = current_user.words.new
+    @word = current_user.words.new
   end
 
   def edit; end
