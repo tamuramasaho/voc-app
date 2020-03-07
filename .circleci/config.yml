@@ -23,10 +23,9 @@ jobs:
       - *default_docker_ruby_executor
     steps:
       - checkout
-      # Which version of bundler?
       - run:
-          name: Which bundler?
-          command: bundle -v
+          name: Install bundler
+          command: gem install -v 2.1.4
       # bundle cache
       - restore_cache:
           keys:
