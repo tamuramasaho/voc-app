@@ -6,6 +6,7 @@ services:
     environment:
       MYSQL_DATABASE: voc-app_development
       MYSQL_ROOT_PASSWORD: password
+      DB_USERNAME: root
     ports:
       - "3306:3306"
   web:
