@@ -22,8 +22,8 @@ gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'figaro'
-gem 'mini_racer' 
 
+# gem 'mini_racer' 
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -52,6 +52,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'chromedriver-helper'
   gem 'selenium-webdriver'
+  gem "rspec_junit_formatter"
 end
 
 gem 'tzinfo-data'

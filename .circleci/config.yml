@@ -7,17 +7,15 @@ references:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
       BUNDLE_PATH: vendor/bundle
-      PGHOST: 127.0.0.1
-      PGUSER: circleci-demo-ruby
-      PGPASSWORD: ""
+      DB_HOST: 127.0.0.1
+      DB_USERNAME: root
+      DB_PASSWORD: ""
       RAILS_ENV: test
   mysql: &mysql
-    image: circleci/mysql5.7
+    image: circleci/mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: voc-app_test
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 
+      DB_USERNAME: root
+      DB_PASSWORD: ""
 
 jobs:
   build:
@@ -25,14 +23,14 @@ jobs:
       - *default_docker_ruby_executor
     steps:
       - checkout
-      # Which version of bundler?
       - run:
-          name: Which bundler?
-          command: bundle -v
+          name: Install bundler
+          command: gem install bundler -v 2.1.4
       # bundle cache
       - restore_cache:
           keys:
             - voc-app-{{ checksum "Gemfile.lock" }}
+            - voc-app-
       - run:
           name: Bundle Install
           command: bundle check || bundle install
@@ -40,7 +38,7 @@ jobs:
       - save_cache:
           key: voc-app-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle      
+            - vendor/bundle
   test:
     parallelism: 3
     docker:
@@ -51,22 +49,21 @@ jobs:
       - restore_cache:
           keys:
             - voc-app-{{ checksum "Gemfile.lock" }}
+            - voc-app-
+      - run:
+          name: Install bundler
+          command: gem install bundler -v 2.1.4
       - run:
           name: Bundle Install
           command: bundle check || bundle install
       - run:
           name: Wait for DB
-          command: |
-            for i in `seq 1 10`;
-            do
-              nc -z 127.0.0.1 3306 && echo Success && exit 0
-              echo -n .
-              sleep 1
-            done
-            echo Failed waiting for MySQL && exit 1
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run: rm ./config/database.yml
+      - run: mv ./config/database.yml.ci ./config/database.yml
       - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          command: bundle exec rails db:create db:schema:load --trace
       # Run rspec in parallel
       - run:
           command: |
