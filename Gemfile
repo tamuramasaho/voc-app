@@ -22,8 +22,10 @@ gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'figaro'
-gem 'mini_racer' 
 
+group :development, :production do
+  gem 'mini_racer' 
+end
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
