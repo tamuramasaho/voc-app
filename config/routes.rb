@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
   end
-  root to: 'pages#home'
+  root to: 'words#index'
   resources :words do
     post :import, on: :collection
     put :remember_update, on: :member
