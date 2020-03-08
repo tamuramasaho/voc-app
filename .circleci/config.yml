@@ -98,6 +98,9 @@ jobs:
             - vendor/bundle
       - add_ssh_keys:
           fingerprints: e4:ba:18:73:fb:a8:44:8c:f7:c9:86:c0:70:e5:73:d0
+      #capistrano_key_rsa
+      - add_ssh_keys:
+          fingerprints: 85:d8:1d:86:cc:42:04:06:fb:5a:af:34:5f:d9:1e:34
       - deploy:
          name: Capistranoデプロイ
          command:
