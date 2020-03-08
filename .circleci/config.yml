@@ -75,6 +75,10 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+  deploy-job:
+    steps:
+      - add_ssh_keys:
+          fingerprints: e4:ba:18:73:fb:a8:44:8c:f7:c9:86:c0:70:e5:73:d0
 
 workflows:
   version: 2
@@ -84,3 +88,6 @@ workflows:
       - test:
           requires:
             - build
+      - deploy-job
+          requires:
+            - test
