@@ -79,6 +79,23 @@ jobs:
     docker:
       - *default_docker_ruby_executor
     steps:
+      - checkout
+      - run:
+          name: Install bundler
+          command: gem install bundler -v 2.1.4
+      # bundle cache
+      - restore_cache:
+          keys:
+            - voc-app-{{ checksum "Gemfile.lock" }}
+            - voc-app-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      # Store bundle cache
+      - save_cache:
+          key: voc-app-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - add_ssh_keys:
           fingerprints: e4:ba:18:73:fb:a8:44:8c:f7:c9:86:c0:70:e5:73:d0
       - deploy:
