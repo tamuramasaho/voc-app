@@ -70,6 +70,9 @@ jobs:
             mkdir /tmp/test-results
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
@@ -103,7 +106,7 @@ jobs:
           fingerprints: 85:d8:1d:86:cc:42:04:06:fb:5a:af:34:5f:d9:1e:34
       - deploy:
          name: Capistranoデプロイ
-         command:
+         command: |
           if [ "${CIRCLE_BRANCH}" != "master" ]; then
               exit 0
           fi
