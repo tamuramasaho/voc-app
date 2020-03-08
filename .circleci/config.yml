@@ -104,7 +104,10 @@ jobs:
       - deploy:
          name: Capistranoデプロイ
          command:
-           bundle exec cap production deploy
+          if [ "${CIRCLE_BRANCH}" != "master" ]; then
+              exit 0
+          fi
+          bundle exec cap production deploy
 
 workflows:
   version: 2
