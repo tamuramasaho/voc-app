@@ -39,9 +39,6 @@ jobs:
           key: voc-app-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - run:
-          name: Run rubocop
-          command: bundle exec rubocop
   test:
     parallelism: 3
     docker:

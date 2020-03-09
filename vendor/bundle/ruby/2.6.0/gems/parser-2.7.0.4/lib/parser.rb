@@ -63,7 +63,7 @@ module Parser
 
   require 'parser/static_environment'
 
-  # require 'parser/lexer'
+  require 'parser/lexer'
   require 'parser/lexer/literal'
   require 'parser/lexer/stack_state'
   require 'parser/lexer/dedenter'
