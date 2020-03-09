@@ -5,48 +5,50 @@ header.masthead
           h1.text-uppercase.text-white.font-weight-bold This is Vocabulary-app for english learners!
           hr.divider.my-4
         div.col-lg-8.align-self-baseline
-          p.text-white-75.font-weight-light.mb-5 自分で例文を作って単語帳に登録したり、画像を紐づけて単語帳に登録することは、記憶力向上に役立ちます！
-          = link_to 'ログインして使ってみる', words_path, class: 'btn btn-primary btn-xl'
-          a.btn.btn-primary.btn-xl.js-scroll-trigger href="#about" Find Out More
+          p.text-white-75.font-weight-light.mb-5 例文や関連画像が登録できる単語帳アプリです！
+          = link_to 'ログイン', words_path, class: 'mr-1 btn btn-primary btn-xl'
+          a.btn.btn-primary.btn-xl.js-scroll-trigger href="#about" 詳しくみる
 
 section.page-section.bg-primary#about
     div.container
       div.row.justify-content-center
         div.col-lg-8.text-center
-          h2.text-white.mt-0 We've got what you need!
+          h2.text-white.mt-0 なぜ単語帳アプリなのか
           hr.divider.light.my-4
-          p.text-white-50.mb-4 Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!
-          = link_to 'Get Started!', words_path, class: 'btn btn-light btn-xl'
+          p.text-white-50.mb-4 
+            | 英単語を覚える際に実際に使える例文を登録し、
+            | 画像を登録することによって、記憶力の定着に役立ちます。
+          a.btn.btn-light.btn-xl href="#services" 使用技術を見る
 
 
 section.page-section#services
     div.container
-      h2.text-center.mt-0 At Your Service
+      h2.text-center.mt-0 使用技術
       hr.divider.my-4
       div.row
         div.col-lg-3.col-md-6.text-center
           div.mt-5
+            i.fab.fa-4x.fa-aws.text-primary.mb-4
+            h3.h4.mb-2 AWS
+            p.text-muted.mb-0 AmazonEC2にCapistranoを利用しデプロイしています。
+
+        div.col-lg-3.col-md-6.text-center
+          div.mt-5
             i.fas.fa-4x.fa-gem.text-primary.mb-4
-            h3.h4.mb-2 Sturdy Themes
-            p.text-muted.mb-0 Our themes are updated regularly to keep them bug free!
+            h3.h4.mb-2 Rails
+            p.text-muted.mb-0 Ruby on Railsを利用して作成しています。
 
         div.col-lg-3.col-md-6.text-center
           div.mt-5
-            i.fas.fa-4x.fa-laptop-code.text-primary.mb-4
-            h3.h4.mb-2 Up to Date
-            p.text-muted.mb-0 All dependencies are kept current to keep things fresh.
+            i.fab.fa-4x.fa-docker.text-primary.mb-4
+            h3.h4.mb-2 Docker
+            p.text-muted.mb-0 Dockerを利用し環境構築をしています。
 
         div.col-lg-3.col-md-6.text-center
           div.mt-5
-            i.fas.fa-4x.fa-globe.text-primary.mb-4
-            h3.h4.mb-2 Ready to Publish
-            p.text-muted.mb-0 You can use this design as is, or you can make changes!
-
-        div.col-lg-3.col-md-6.text-center
-          div.mt-5
-            i.fas.fa-4x.fa-heart.text-primary.mb-4
-            h3.h4.mb-2 Made with Love
-            p.text-muted.mb-0 Is it really open source if it's not made with love?
+            = image_tag 'img/circle-logo-badge-black.png', class: 'circleci'
+            h3.h4.mb-2 CircleCI
+            p.text-muted.mb-0 CI/CDパイプラインを構築し、テスト、デプロイ自動化しています。
 
 section#portfolio
     div.container-fluid.p-0
@@ -98,24 +100,24 @@ section.page-section#contact
     div.container
       div.row.justify-content-center
         div.col-lg-8.text-center
-          h2.mt-0 Let's Get In Touch!
+          h2.mt-0 コンタクト
           hr.divider.my-4
-          p.text-muted.mb-5 Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!
+          p.text-muted.mb-5 お気軽にお問い合わせください。
 
       div.row
         div.col-lg-4.ml-auto.text-center.mb-5.mb-lg-0
           i.fas.fa-phone.fa-3x.mb-3.text-muted
-          div +1 (202) 555-0149
+          div 070-4008-6092
 
         div.col-lg-4.mr-auto.text-center
           i.fas.fa-envelope.fa-3x.mb-3.text-muted
-          a.d-block href="mailto:contact@yourwebsite.com" contact@yourwebsite.com
+          a.d-block href="tamuramasaho753@gmail.com" tamuramasaho753@gmail.com
 
 
 / Footer
 footer.bg-light.py-5
   div.container
-    div.small.text-center.text-muted Copyright &copy; 2019 - Start Bootstrap
+    div.small.text-center.text-muted &copy; 2020 - MasahoTamura
 
 
 / Bootstrap core JavaScript
