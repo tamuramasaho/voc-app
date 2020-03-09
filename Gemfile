@@ -32,8 +32,6 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'factory_bot_rails', '~> 4.11'
-  gem 'rubocop'
-  gem 'rubocop-rails'
 end
 
 group :production, :staging do
@@ -45,6 +43,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :test do
