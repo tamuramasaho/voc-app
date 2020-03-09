@@ -1,0 +1,132 @@
+header.masthead
+    div.container.h-100
+      div.row.h-100.align-items-center.justify-content-center.text-center
+        div.col-lg-10.align-self-end
+          h1.text-uppercase.text-white.font-weight-bold This is Vocabulary-app for english learners!
+          hr.divider.my-4
+        div.col-lg-8.align-self-baseline
+          p.text-white-75.font-weight-light.mb-5 例文や関連画像が登録できる単語帳アプリです！
+          = link_to 'ログイン', words_path, class: 'mr-1 btn btn-primary btn-xl'
+          a.btn.btn-primary.btn-xl.js-scroll-trigger href="#about" 詳しくみる
+
+section.page-section.bg-primary#about
+    div.container
+      div.row.justify-content-center
+        div.col-lg-8.text-center
+          h2.text-white.mt-0 なぜ単語帳アプリなのか
+          hr.divider.light.my-4
+          p.text-white-50.mb-4 
+            | 英単語を覚える際に実際に使える例文を登録し、
+            | 画像を登録することによって、記憶力の定着に役立ちます。
+          a.btn.btn-light.btn-xl href="#services" 使用技術を見る
+
+
+section.page-section#services
+    div.container
+      h2.text-center.mt-0 使用技術
+      hr.divider.my-4
+      div.row
+        div.col-lg-3.col-md-6.text-center
+          div.mt-5
+            i.fab.fa-4x.fa-aws.text-primary.mb-4
+            h3.h4.mb-2 AWS
+            p.text-muted.mb-0 AmazonEC2にCapistranoを利用しデプロイしています。
+
+        div.col-lg-3.col-md-6.text-center
+          div.mt-5
+            i.fas.fa-4x.fa-gem.text-primary.mb-4
+            h3.h4.mb-2 Rails
+            p.text-muted.mb-0 Ruby on Railsを利用して作成しています。
+
+        div.col-lg-3.col-md-6.text-center
+          div.mt-5
+            i.fab.fa-4x.fa-docker.text-primary.mb-4
+            h3.h4.mb-2 Docker
+            p.text-muted.mb-0 Dockerを利用し環境構築をしています。
+
+        div.col-lg-3.col-md-6.text-center
+          div.mt-5
+            = image_tag 'img/circle-logo-badge-black.png', class: 'circleci'
+            h3.h4.mb-2 CircleCI
+            p.text-muted.mb-0 CI/CDパイプラインを構築し、テスト、デプロイ自動化しています。
+
+section#portfolio
+    div.container-fluid.p-0
+      div.row.no-gutters
+        div.col-lg-4.col-sm-6
+          a.portfolio-box href="img/portfolio/fullsize/1.jpg"
+            = image_tag 'img/portfolio/thumbnails/1.jpg', class: 'img-fluid'
+            div.portfolio-box-caption
+              div.project-category.text-white-50 Category
+              div.project-name Project Name
+
+        div.col-lg-4.col-sm-6
+          a.portfolio-box href="img/portfolio/fullsize/2.jpg"
+            = image_tag 'img/portfolio/thumbnails/2.jpg', class: 'img-fluid'
+            div.portfolio-box-caption
+              div.project-category.text-white-50 Category
+              div.project-name Project Name
+
+        div.col-lg-4.col-sm-6
+          a.portfolio-box href="img/portfolio/fullsize/3.jpg"
+            = image_tag 'img/portfolio/thumbnails/3.jpg', class: 'img-fluid'
+            div.portfolio-box-caption
+              div.project-category.text-white-50 Category
+              div.project-name Project Name
+
+        div.col-lg-4.col-sm-6
+          a.portfolio-box href="img/portfolio/fullsize/4.jpg"
+            = image_tag 'img/portfolio/thumbnails/4.jpg', class: 'img-fluid'
+            div.portfolio-box-caption
+              div.project-category.text-white-50Category
+              div.project-name Project Name
+
+        div.col-lg-4.col-sm-6
+          a.portfolio-box href="img/portfolio/fullsize/5.jpg"
+            = image_tag 'img/portfolio/thumbnails/5.jpg', class: 'img-fluid'
+            div.portfolio-box-caption
+              div.project-category.text-white-50 Category
+              div.project-name Project Name
+
+        div.col-lg-4.col-sm-6
+          a.portfolio-box href="img/portfolio/fullsize/6.jpg"
+            = image_tag 'img/portfolio/thumbnails/6.jpg', class: 'img-fluid'
+            div.portfolio-box-caption p-3
+              div.project-category.text-white-50 Category
+              div.project-name Project Name
+
+
+section.page-section#contact
+    div.container
+      div.row.justify-content-center
+        div.col-lg-8.text-center
+          h2.mt-0 コンタクト
+          hr.divider.my-4
+          p.text-muted.mb-5 お気軽にお問い合わせください。
+
+      div.row
+        div.col-lg-4.ml-auto.text-center.mb-5.mb-lg-0
+          i.fas.fa-phone.fa-3x.mb-3.text-muted
+          div 070-4008-6092
+
+        div.col-lg-4.mr-auto.text-center
+          i.fas.fa-envelope.fa-3x.mb-3.text-muted
+          a.d-block href="tamuramasaho753@gmail.com" tamuramasaho753@gmail.com
+
+
+/ Footer
+footer.bg-light.py-5
+  div.container
+    div.small.text-center.text-muted &copy; 2020 - MasahoTamura
+
+
+/ Bootstrap core JavaScript
+script src="vendor/jquery/jquery.min.js"
+script src="vendor/bootstrap/js/bootstrap.bundle.min.js"
+
+/ Plugin JavaScript
+script src="vendor/jquery-easing/jquery.easing.min.js"
+script src="vendor/magnific-popup/jquery.magnific-popup.min.js"
+
+/ Custom scripts for this template
+script src="js/creative.min.js"
