@@ -41,14 +41,7 @@ jobs:
             - vendor/bundle
       - run:
           name: Run rubocop
-          command: |
-            mkdir /tmp/test-results
-
-            bundle exec rspec  \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rubocop.xml \
-              spec/lint/rubocop_spec.rb
+          command: bundle exec rubocop
   test:
     parallelism: 3
     docker:
