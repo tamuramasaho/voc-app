@@ -34,7 +34,9 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle check || bundle install
-
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop
       # Store bundle cache
       - save_cache:
           key: voc-app-{{ checksum "Gemfile.lock" }}
