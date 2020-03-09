@@ -8,7 +8,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'coffee-rails', '~> 4.2'
 gem 'faker'
-gem 'font-awesome-rails'
+gem 'figaro'
+gem 'font-awesome-sass'
 gem 'html2slim'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
@@ -21,17 +22,16 @@ gem 'sass-rails', '~> 5.0'
 gem 'slim-rails'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'figaro'
 
-# gem 'mini_racer' 
+# gem 'mini_racer'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails', '~> 4.11'
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+  gem 'factory_bot_rails', '~> 4.11'
 end
 
 group :production, :staging do
@@ -48,11 +48,11 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.7'
   gem 'capybara', '>= 2.15'
   gem 'chromedriver-helper'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
-  gem "rspec_junit_formatter"
 end
 
 gem 'tzinfo-data'

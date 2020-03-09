@@ -19,6 +19,8 @@ AllCops:
     - !ruby/regexp /old_and_unused\.rb$/
     - 'node_modules/**/*'
     - 'spec/**/*'
+    - 'vendor/**/*'
+    - 'lib/capistrano/tasks/unicorn.rb'
 
 # 日本語でのコメントを許可
 AsciiComments:
@@ -39,3 +41,18 @@ Style/FrozenStringLiteralComment:
 Metrics/AbcSize:
   Enabled: true
   Max: 20
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

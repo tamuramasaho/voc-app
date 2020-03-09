@@ -1,6 +1,8 @@
 @import "bootstrap";
+@import "font-awesome-sprockets";
 @import "font-awesome";
-
+@import "./pages.scss";
+@import "./creative.min.css";
 
 section {
     overflow: auto;
@@ -78,3 +80,5 @@ p {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
+
+
