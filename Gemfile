@@ -32,7 +32,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'factory_bot_rails', '~> 4.11'
-  gem 'rubocop', require: false
+  gem 'rubocop'
   gem 'rubocop-rails'
 end
 
