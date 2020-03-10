@@ -30,12 +30,12 @@ table.table.table-hover
                         = link_to Word.human_attribute_name(:remember),
                             remember_update_word_path(word, word: {remember: false}),
                             method: :put, remote: true,
-                            class: 'fa fa-check-square-o'
+                            class: 'fas fa-check-square'
                     -else
                         = link_to Word.human_attribute_name(:remember),
                             remember_update_word_path(word, word: {remember: true}),
                             method: :put, remote: true,
-                            class: 'fa fa-square-o'
+                            class: 'fas fa-square'
                     
 .mb-3
     = paginate @words
