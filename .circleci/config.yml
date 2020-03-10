@@ -91,6 +91,9 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle check || bundle install
+      - run:
+          name: Database setup
+          command: bundle exec rails db:create db:schema:load --trace
       # Store bundle cache
       - save_cache:
           key: voc-app-{{ checksum "Gemfile.lock" }}
