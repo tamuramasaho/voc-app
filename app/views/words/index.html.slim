@@ -40,6 +40,7 @@
                         
     .mb-3
         = paginate @words
+    
     / = link_to 'エクスポート', words_path(format: :csv), class: 'btn btn-primary mb-3'
     = form_tag import_words_path, multipart: true do
         = label_tag :title, 'CSVファイルインポート'
