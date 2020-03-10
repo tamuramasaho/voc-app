@@ -42,13 +42,6 @@
         = paginate @words
     
     / = link_to 'エクスポート', words_path(format: :csv), class: 'btn btn-primary mb-3'
-    = form_tag import_words_path, multipart: true do
-        = label_tag :title, 'CSVファイルインポート'
-        = text_field_tag 'filename',"", id: "filename", class: 'mr-3 col-sm-8', 
-                                disabled: true
-        = file_field_tag :file, id: "file_input", style: "display: none;", 
-                        onchange: "file_selected($(this));"
-        = button_tag 'ファイル選択', class: 'btn-primary csv_input_btn',
-                    type: 'button', onclick: "$('#file_input').click();"
-        .my-3
-            = submit_tag "インポート", class: 'btn-primary mx-auto d-block'
+    = form_tag import_words_path, multipart: true, class: 'mb-3' do
+        = file_field_tag :file
+        = submit_tag "インポート", class: 'btn-primary mx-auto d-block'
