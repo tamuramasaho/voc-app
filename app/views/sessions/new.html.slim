@@ -5,10 +5,17 @@
         .form-group
             = f.label :email, 'メールアドレス'
             = f.text_field :email, class: 'form-control', id: 'session_email',
-                        value: 'example@example.com'
+                        value: 'tamuramasaho@gmail.com'
         .form-group
             = f.label :password, 'パスワード'
             = f.password_field :password, class: 'form-control',
                                             id: 'session_password', value: 'password'
         = f.submit 'ログインする', class: 'btn btn-primary'
+
+    div
+        ul
+            li 管理者メールアドレス： tamuramasaho@gmail.com
+            li 管理者パスワード：　password
+            li 非管理者メールアドレス： kusanominako@gmail.com
+            li 非管理者パスワード： password
 
