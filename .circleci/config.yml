@@ -91,6 +91,8 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle check || bundle install
+      - run: rm ./config/database.yml
+      - run: mv ./config/database.yml.ci ./config/database.yml
       - run:
           name: Database setup
           command: bundle exec rails db:create db:schema:load --trace
