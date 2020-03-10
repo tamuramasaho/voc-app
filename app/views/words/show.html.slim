@@ -1,27 +1,28 @@
-h1 単語の詳細
+.container
+    h1 単語の詳細
 
-.nav.justify-content-end
-    = link_to '一覧', words_path, class: 'nav-link'
-table.table.table-hover
-    tbody
-        tr
-            th= Word.human_attribute_name(:name)
-            td= @word.name
-        tr
-            th= Word.human_attribute_name(:translation)
-            td= @word.translation
-        tr
-            th= Word.human_attribute_name(:example)
-            td= simple_format(h(@word.example), {}, sinitize: false, 
-                                    wrapper_tag: "div")
-        tr
-            th= Word.human_attribute_name(:image)
-            td= image_tag @word.image if @word.image.attached?
+    .nav.justify-content-end
+        = link_to '一覧', words_path, class: 'nav-link'
+    table.table.table-hover
+        tbody
+            tr
+                th= Word.human_attribute_name(:name)
+                td= @word.name
+            tr
+                th= Word.human_attribute_name(:translation)
+                td= @word.translation
+            tr
+                th= Word.human_attribute_name(:example)
+                td= simple_format(h(@word.example), {}, sinitize: false, 
+                                        wrapper_tag: "div")
+            tr
+                th= Word.human_attribute_name(:image)
+                td= image_tag @word.image if @word.image.attached?
 
 
-= link_to '編集', edit_word_path, class: 'btn btn-primary mr-3'
+    = link_to '編集', edit_word_path, class: 'btn btn-primary mr-3'
 
-= link_to '削除', @word, method: :delete,
-            data: { confirm: "単語「#{@word.name}」を削除します。よろしいですか？" },
-            class: 'btn btn-danger'
+    = link_to '削除', @word, method: :delete,
+                data: { confirm: "単語「#{@word.name}」を削除します。よろしいですか？" },
+                class: 'btn btn-danger'
 

@@ -1,52 +1,53 @@
-h1 全単語
+.container
+    h1 全単語
 
-= search_form_for @q, class: 'mb-5' do |f|
-    .form-group.row
-        .col-sm-4
-            =f.search_field :name_or_translation_cont, class: 'form-control'
-        .col-sm-2
-            = f.submit class: 'btn btn-outline-primary'
+    = search_form_for @q, class: 'mb-5' do |f|
+        .form-group.row
+            .col-sm-4
+                =f.search_field :name_or_translation_cont, class: 'form-control'
+            .col-sm-2
+                = f.submit class: 'btn btn-outline-primary'
 
 
-= link_to '新規登録', new_word_path, class: 'btn btn-primary mb-3'
+    = link_to '新規登録', new_word_path, class: 'btn btn-primary mb-3'
 
-.mb-3
-    = paginate @words
-    = page_entries_info @words
+    .mb-3
+        = paginate @words
+        = page_entries_info @words
 
-table.table.table-hover
-    thead.thead-default
-        tr
-            th= Word.human_attribute_name(:name)
-            th= Word.human_attribute_name(:translation)
-            th= "覚えたか"
-    tbody
-        - @words.each do |word|
-            tr id="word-#{word.id}"
-                td= link_to word.name, word
-                td= word.translation
-                td id = "word-#{word.id}-check"
-                    -if word.remember
-                        = link_to Word.human_attribute_name(:remember),
-                            remember_update_word_path(word, word: {remember: false}),
-                            method: :put, remote: true,
-                            class: 'fas fa-check-square'
-                    -else
-                        = link_to Word.human_attribute_name(:remember),
-                            remember_update_word_path(word, word: {remember: true}),
-                            method: :put, remote: true,
-                            class: 'fas fa-square'
-                    
-.mb-3
-    = paginate @words
-/ = link_to 'エクスポート', words_path(format: :csv), class: 'btn btn-primary mb-3'
-= form_tag import_words_path, multipart: true do
-    = label_tag :title, 'CSVファイルインポート'
-    = text_field_tag 'filename',"", id: "filename", class: 'mr-3 col-sm-8', 
-                            disabled: true
-    = file_field_tag :file, id: "file_input", style: "display: none;", 
-                    onchange: "file_selected($(this));"
-    = button_tag 'ファイル選択', class: 'btn-primary csv_input_btn',
-                 type: 'button', onclick: "$('#file_input').click();"
-    .my-3
-        = submit_tag "インポート", class: 'btn-primary mx-auto d-block'
+    table.table.table-hover
+        thead.thead-default
+            tr
+                th= Word.human_attribute_name(:name)
+                th= Word.human_attribute_name(:translation)
+                th= "覚えたか"
+        tbody
+            - @words.each do |word|
+                tr id="word-#{word.id}"
+                    td= link_to word.name, word
+                    td= word.translation
+                    td id = "word-#{word.id}-check"
+                        -if word.remember
+                            = link_to Word.human_attribute_name(:remember),
+                                remember_update_word_path(word, word: {remember: false}),
+                                method: :put, remote: true,
+                                class: 'fas fa-check-square'
+                        -else
+                            = link_to Word.human_attribute_name(:remember),
+                                remember_update_word_path(word, word: {remember: true}),
+                                method: :put, remote: true,
+                                class: 'fas fa-square'
+                        
+    .mb-3
+        = paginate @words
+    / = link_to 'エクスポート', words_path(format: :csv), class: 'btn btn-primary mb-3'
+    = form_tag import_words_path, multipart: true do
+        = label_tag :title, 'CSVファイルインポート'
+        = text_field_tag 'filename',"", id: "filename", class: 'mr-3 col-sm-8', 
+                                disabled: true
+        = file_field_tag :file, id: "file_input", style: "display: none;", 
+                        onchange: "file_selected($(this));"
+        = button_tag 'ファイル選択', class: 'btn-primary csv_input_btn',
+                    type: 'button', onclick: "$('#file_input').click();"
+        .my-3
+            = submit_tag "インポート", class: 'btn-primary mx-auto d-block'
