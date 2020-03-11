@@ -132,13 +132,14 @@ footer.bg-light.py-5
     div.small.text-center.text-muted &copy; 2020 - MasahoTamura
 
 
-/ Bootstrap core JavaScript
-/script src="vendor/jquery/jquery.min.js"
-/script src="vendor/bootstrap/js/bootstrap.bundle.min.js"
-
-/ Plugin JavaScript
-/script src="vendor/jquery-easing/jquery.easing.min.js"
-/script src="vendor/magnific-popup/jquery.magnific-popup.min.js"
-
-/ Custom scripts for this template
-/script src="../../assets/"
+/javascript:
+  $(function () {
+    $('a[href^="#"]').click(function () {
+        var speed = 500;
+        var href= $(this).attr("href");
+        var target = $(href == "#" || href == "" ? 'html' : href);
+        var position = target.offset().top;
+        $("html, body").animate({scrollTop:position}, speed, 'swing');
+        return false;
+    });
+  });
