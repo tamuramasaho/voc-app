@@ -8,18 +8,18 @@ html
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   body
-    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
+    .app-title.navbar.navbar-expand-md.navbar-light.bg-light.fixed-top
       = link_to 'Voc-app', root_path, class: 'navbar-brand', id: 'logo'
 
       ul.navbar-nav.ml-auto
         - if current_user
-          li.nav-item= link_to '単語一覧', words_path, class: 'nav-link'
+          li.nav-item= link_to 'Words', words_path, class: 'nav-link'
           - if current_user.admin?
-            li.nav-item= link_to 'ユーザー一覧', admin_users_path, class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', logout_path, method: :delete,
+            li.nav-item= link_to 'Users', admin_users_path, class: 'nav-link'
+          li.nav-item= link_to 'Logout', logout_path, method: :delete,
                                   class: 'nav-link'
         - else
-          li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+          li.nav-item= link_to 'Login', login_path, class: 'nav-link'
 
     .container
       - if flash.notice.present?
