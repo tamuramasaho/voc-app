@@ -1,21 +1,25 @@
 .container
-    h1 ログイン
-
-    = form_with scope: :session, local: true do |f|
-        .form-group
-            = f.label :email, 'メールアドレス'
-            = f.text_field :email, class: 'form-control', id: 'session_email',
-                        value: 'tamuramasaho@gmail.com'
-        .form-group
-            = f.label :password, 'パスワード'
-            = f.password_field :password, class: 'form-control',
-                                            id: 'session_password', value: 'password'
-        = f.submit 'ログインする', class: 'btn btn-primary'
-
-    div
-        ul
-            li 管理者メールアドレス： tamuramasaho@gmail.com
-            li 管理者パスワード：　password
-            li 非管理者メールアドレス： kusanominako@gmail.com
-            li 非管理者パスワード： password
-
+    div#login
+        div.container
+            div#login-row.row.justify-content-center.align-items-center
+                div#login-column.col-md-6
+                    div#login-box.col-md-12
+                        = form_with scope: :session, local: true do |f|
+                            h3.text-center.font-weight-bold.text-uppercase#login-title Login
+                            .form-group
+                                = f.label :email, 'メールアドレス'
+                                = f.text_field :email, class: 'form-control', id: 'session_email',
+                                            value: 'tamuramasaho@gmail.com'
+                            .form-group
+                                = f.label :password, 'パスワード'
+                                = f.password_field :password, class: 'form-control',
+                                                                id: 'session_password', value: 'password'
+                            .text-center                                                                
+                                = f.submit 'ログインする', class: 'btn btn-primary mt-3'
+                    div
+                            ul.mt-5.pale
+                                li 管理者メールアドレス： tamuramasaho@gmail.com
+                                li 管理者パスワード：　password
+                                li 非管理者メールアドレス： kusanominako@gmail.com
+                                li 非管理者パスワード： password
+                            

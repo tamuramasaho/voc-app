@@ -3,6 +3,12 @@
 @import "font-awesome";
 @import "./pages.scss";
 @import "./creative.scss";
+@import "./sessions.scss";
+
+
+body { 
+    padding-top: 70px; 
+}
 
 section {
     overflow: auto;
