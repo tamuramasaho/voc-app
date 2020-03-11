@@ -16,7 +16,7 @@ describe 'user session system', type: :system do
     context 'with valid information' do
         let(:login_user) { user_a }
         it 'logout' do
-            click_link 'ログアウト'
+            click_link 'Logout'
             expect(page).to have_content 'This is Vocabulary-app'
         end
     end

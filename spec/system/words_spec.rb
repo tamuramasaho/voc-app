@@ -34,7 +34,7 @@ describe 'words management system', type: :system do
       it_behaves_like 'showing words made by ユーザーA'
 
       it 'has users index link' do
-        expect(page).to have_content 'ユーザー一覧'
+        expect(page).to have_content 'Users'
       end
     end
 
@@ -46,7 +46,7 @@ describe 'words management system', type: :system do
       end
 
       it 'does not have users index link' do
-        expect(page).not_to have_content 'ユーザー一覧'
+        expect(page).not_to have_content 'Users'
       end
     end
   end
