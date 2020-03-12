@@ -23,3 +23,7 @@
                         = link_to '削除', [:admin, user], method: :delete,
                             data: { confirm: "ユーザー「#{user.name}」を削除します。よろしいですか？"},
                             class: 'btn btn-danger'
+
+    = form_tag import_words_path, multipart: true, class: 'mb-3' do
+        = file_field_tag :file
+        = submit_tag "インポート", class: 'btn-primary mx-auto d-block'

@@ -1,6 +1,4 @@
 .container
-    h1 全単語
-
     = search_form_for @q, class: 'mb-5' do |f|
         .form-group.row
             .col-sm-4
@@ -10,38 +8,50 @@
 
 
     = link_to '新規登録', new_word_path, class: 'btn btn-primary mb-3'
-
-    .mb-3
+    /ページネーション機能一時停止
+    /.mb-3
         = paginate @words
         = page_entries_info @words
+    ul.tab
+        li.select 覚えた単語
+        li 覚えてない単語
 
-    table.table.table-hover
+    table.table.table-hover.content
         thead.thead-default
             tr
                 th= Word.human_attribute_name(:name)
                 th= Word.human_attribute_name(:translation)
-                th= "覚えたか"
+                th= "チェック"
         tbody
             - @words.each do |word|
-                tr id="word-#{word.id}"
-                    td= link_to word.name, word
-                    td= word.translation
-                    td id = "word-#{word.id}-check"
-                        -if word.remember
-                            = link_to Word.human_attribute_name(:remember),
-                                remember_update_word_path(word, word: {remember: false}),
-                                method: :put, remote: true,
-                                class: 'fas fa-check-square'
-                        -else
-                            = link_to Word.human_attribute_name(:remember),
-                                remember_update_word_path(word, word: {remember: true}),
-                                method: :put, remote: true,
-                                class: 'fas fa-square'
-                        
-    .mb-3
+                -if word.remember
+                    tr id="word-#{word.id}"
+                        td= link_to word.name, word
+                        td= word.translation
+                        td id = "word-#{word.id}-check"
+                                = link_to Word.human_attribute_name(:remember) + '!',
+                                    remember_update_word_path(word, word: {remember: false}),
+                                    method: :put, remote: true,
+                                    class: 'btn btn-primary'
+                
+        tbody.hide
+            - @words.each do |word|
+                -unless word.remember
+                    tr id="word-#{word.id}"
+                        td= link_to word.name, word
+                        td= word.translation
+                        td id = "word-#{word.id}-check"
+                                = link_to '忘れた!',
+                                    remember_update_word_path(word, word: {remember: true}),
+                                    method: :put, remote: true,
+                                    class: 'btn btn-success'
+
+    /.mb-3
         = paginate @words
-    
+        = page_entries_info @words
+
+
     / = link_to 'エクスポート', words_path(format: :csv), class: 'btn btn-primary mb-3'
-    = form_tag import_words_path, multipart: true, class: 'mb-3' do
+    / = form_tag import_words_path, multipart: true, class: 'mb-3' do
         = file_field_tag :file
         = submit_tag "インポート", class: 'btn-primary mx-auto d-block'

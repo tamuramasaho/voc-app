@@ -4,7 +4,8 @@ class WordsController < ApplicationController
 
   def index
     @q = current_user.words.ransack(params[:q])
-    @words = @q.result(distinct: true).alphabetical.page(params[:page])
+    @words = @q.result(distinct: true).alphabetical
+    # @words = @q.result(distinct: true).alphabetical.page(params[:page])
     respond_to do |format|
       format.html
       format.csv do
